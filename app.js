@@ -507,6 +507,18 @@ function enableProModeVisuals() {
 function openModal(planName, price) {
     document.getElementById('modal-plan-name').textContent = planName;
     document.getElementById('modal-plan-price').textContent = price;
+    
+    const gumroadBtn = document.getElementById('link-gumroad');
+    if (gumroadBtn) {
+        if (price.includes('49') || planName.toLowerCase().includes('agency')) {
+            gumroadBtn.href = 'https://moosoficial.gumroad.com/l/promptcraft-agency';
+            gumroadBtn.innerHTML = '<i class="fa-solid fa-building"></i> Comprar Licencia AGENCY con Gumroad ($49 USD)';
+        } else {
+            gumroadBtn.href = 'https://moosoficial.gumroad.com/l/promptcraft-pro';
+            gumroadBtn.innerHTML = '<i class="fa-solid fa-bag-shopping"></i> Comprar Licencia PRO con Gumroad ($29 USD)';
+        }
+    }
+    
     checkoutModal.classList.add('active');
 }
 
