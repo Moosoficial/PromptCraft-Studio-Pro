@@ -580,7 +580,7 @@ function renderSaved() {
                 </div>
                 <div class="card-actions">
                     <button class="btn-icon btn-toggle-save" data-id="${p.id}" title="Quitar de marcadores">
-                        <i class="fa-solid fa-trash" style="color: #f87171;"></i>
+                        <i class="fa-solid fa-trash" style="color: #dc2626;"></i>
                     </button>
                     <button class="btn-primary btn-sm btn-copy-prompt" data-id="${p.id}">
                         <i class="fa-solid fa-copy"></i> Copiar
@@ -610,7 +610,7 @@ function renderSaved() {
                 </div>
                 <div class="card-actions">
                     <button class="btn-icon btn-remove-custom" data-index="${index}" title="Eliminar prompt personalizado">
-                        <i class="fa-solid fa-trash" style="color: #f87171;"></i>
+                        <i class="fa-solid fa-trash" style="color: #dc2626;"></i>
                     </button>
                     <button class="btn-primary btn-sm btn-copy-custom" data-index="${index}">
                         <i class="fa-solid fa-copy"></i> Copiar
@@ -922,12 +922,13 @@ function enableProModeVisuals() {
     const badge = document.querySelector('.badge-pro');
     if (badge) {
         badge.textContent = 'PRO ACTIVADO';
-        badge.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+        badge.style.background = '#000000';
+        badge.style.color = '#ffffff';
     }
     if (btnDemoPro) {
         btnDemoPro.innerHTML = '<i class="fa-solid fa-circle-check"></i> Modo PRO Activo';
-        btnDemoPro.style.borderColor = '#10b981';
-        btnDemoPro.style.color = '#10b981';
+        btnDemoPro.style.borderColor = '#047857';
+        btnDemoPro.style.color = '#047857';
     }
 
     // Update Pro Template Cards UI
@@ -953,8 +954,9 @@ function enableProModeVisuals() {
     const proBtn = document.getElementById('btn-plan-pro');
     if (proBtn) {
         proBtn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Licencia PRO Activa';
-        proBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-        proBtn.style.boxShadow = '0 4px 15px rgba(16, 185, 129, 0.4)';
+        proBtn.style.background = '#000000';
+        proBtn.style.color = '#ffffff';
+        proBtn.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
     }
 }
 
