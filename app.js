@@ -428,15 +428,19 @@ Proporciona la respuesta estructurada en: ${format}.`;
     // Promo Code Handler
     btnApplyPromo.addEventListener('click', () => {
         const code = promoCodeInput.value.trim().toUpperCase();
-        if (code === 'GOAL50USD' || code === 'PRO2026') {
+        const validCodes = ['GOAL50USD', 'PROMO2026', 'LAUNCH2026', 'NOVAPRO', 'DEMOPRO'];
+        
+        if (validCodes.includes(code)) {
             state.isPro = true;
             localStorage.setItem('promptcraft_pro', 'true');
             enableProModeVisuals();
             renderLibrary();
             closeModal();
             showToast('🎉 ¡Licencia PRO Desbloqueada con Éxito!');
+        } else if (code === '') {
+            showToast('⚠️ Ingresa un código promocional');
         } else {
-            showToast('❌ Código inválido. Usa GOAL50USD');
+            showToast('❌ Código no válido. Ingresa GOAL50USD o PROMO2026');
         }
     });
 
