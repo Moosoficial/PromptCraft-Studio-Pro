@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PromptCraft Studio Pro | AI Engineering & Content Engine</title>
+    <meta name="description" content="La suite definitiva de optimización de prompts y automatización para creadores, desarrolladores y especialistas en marketing.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-name">PromptCraft <span class="badge-pro">PRO</span></span>
+                    <span class="brand-sub">by NovaStack AI</span>
+                </div>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="#library" class="nav-link active" data-tab="library"><i class="fa-solid fa-book-open"></i> Biblioteca</a>
+                <a href="#builder" class="nav-link" data-tab="builder"><i class="fa-solid fa-sliders"></i> Creador Dinámico</a>
+                <a href="#templates" class="nav-link" data-tab="templates"><i class="fa-solid fa-layer-group"></i> Templates ($50k Value)</a>
+                <a href="#saved" class="nav-link" data-tab="saved"><i class="fa-solid fa-bookmark"></i> Mis Prompts (<span id="saved-count">0</span>)</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="btn-secondary" id="btn-demo-pro"><i class="fa-solid fa-crown"></i> Desbloquear Todo</button>
+                <a href="#pricing" class="btn-primary" id="btn-get-license"><i class="fa-solid fa-bolt"></i> Licencia Pro ($29 USD)</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="app-main">
+
+        <!-- Hero Section -->
+        <section class="hero-banner">
+            <div class="hero-content">
+                <div class="hero-tag"><i class="fa-solid fa-fire"></i> Herramienta Comercial Llave en Mano</div>
+                <h1 class="hero-title">Maximiza los Resultados de la IA con <span class="gradient-text">Prompts de Nivel Profesional</span></h1>
+                <p class="hero-subtitle">Genera código impecable, estrategias de marketing de alta conversión y automatizaciones en segundos con nuestra suite de ingeniería de prompts.</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-num">120+</span>
+                        <span class="stat-label">Prompts Premium</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">10x</span>
+                        <span class="stat-label">Mayor Productividad</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">100%</span>
+                        <span class="stat-label">Licencia Comercial</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search & Filter Bar -->
+        <div class="toolbar">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="search-input" placeholder="Buscar prompts por palabras clave, LLM (Claude, ChatGPT, Gemini)...">
+                <button class="clear-search" id="clear-search" style="display:none;"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="category-pills" id="category-filters">
+                <button class="pill active" data-cat="all">Todos (120)</button>
+                <button class="pill" data-cat="coding"><i class="fa-solid fa-code"></i> Código & Dev</button>
+                <button class="pill" data-cat="marketing"><i class="fa-solid fa-chart-line"></i> Marketing & Ventas</button>
+                <button class="pill" data-cat="copywriting"><i class="fa-solid fa-pen-nib"></i> Copywriting</button>
+                <button class="pill" data-cat="business"><i class="fa-solid fa-briefcase"></i> Negocios & SaaS</button>
+                <button class="pill" data-cat="productivity"><i class="fa-solid fa-bolt"></i> Automatización</button>
+                <button class="pill" data-cat="pro"><i class="fa-solid fa-star"></i> Exclusivo Pro</button>
+            </div>
+        </div>
+
+        <!-- Tab 1: Prompts Library -->
+        <div class="tab-content active" id="tab-library">
+            <div class="grid-layout" id="prompts-grid">
+                <!-- Injected via JavaScript -->
+            </div>
+        </div>
+
+        <!-- Tab 2: Dynamic Prompt Builder -->
+        <div class="tab-content" id="tab-builder">
+            <div class="builder-container">
+                <div class="builder-sidebar">
+                    <h3><i class="fa-solid fa-sliders"></i> Parámetros de Estructura</h3>
+                    <p class="builder-desc">Personaliza las variables del prompt para obtener respuestas óptimas del modelo de IA.</p>
+                    
+                    <div class="form-group">
+                        <label for="b-role">Rol / Personalidad de la IA</label>
+                        <select id="b-role">
+                            <option value="Senior Full-Stack Architect">Senior Full-Stack Architect</option>
+                            <option value="Elite Copywriter & Conversion Specialist">Elite Copywriter & Conversion Specialist</option>
+                            <option value="SaaS Growth Strategist">SaaS Growth Strategist</option>
+                            <option value="Product Manager & UX Specialist">Product Manager & UX Specialist</option>
+                            <option value="Custom">Otro (Personalizado)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="custom-role-group" style="display:none;">
+                        <label for="b-custom-role">Escribe el Rol</label>
+                        <input type="text" id="b-custom-role" placeholder="Ej: Especialista en Ciberseguridad">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="b-task">Objetivo / Tarea Principal</label>
+                        <textarea id="b-task" rows="3" placeholder="Ej: Crear una landing page de alta conversión para un producto SaaS..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="b-context">Contexto & Audiencia Objetivo</label>
+                        <textarea id="b-context" rows="2" placeholder="Ej: Para fundadores de startups B2B buscando clientes en Twitter..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="b-format">Formato de Salida Deseado</label>
+                        <select id="b-format">
+                            <option value="Markdown estructurado con código explicativo">Markdown estructurado con código</option>
+                            <option value="Tabla comparativa detallada (Markdown)">Tabla comparativa (Markdown)</option>
+                            <option value="Guía paso a paso numerada">Guía paso a paso numerada</option>
+                            <option value="JSON estructurado con esquemas">JSON estructurado</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="b-tone">Tono de Voz</label>
+                        <select id="b-tone">
+                            <option value="Persuasivo, directo y profesional">Persuasivo & Profesional</option>
+                            <option value="Técnico, riguroso y conciso">Técnico & Conciso</option>
+                            <option value="Creativo, dinámico y moderno">Creativo & Moderno</option>
+                            <option value="Formativo, detallado y claro">Formativo & Educativo</option>
+                        </select>
+                    </div>
+
+                    <button class="btn-primary btn-block" id="btn-generate-custom"><i class="fa-solid fa-wand-sparkles"></i> Generar Prompt Maestro</button>
+                </div>
+
+                <div class="builder-preview">
+                    <div class="preview-header">
+                        <span><i class="fa-solid fa-code"></i> Vista Previa del Prompt Generado</span>
+                        <div class="preview-actions">
+                            <button class="btn-icon" id="btn-copy-built" title="Copiar Prompt"><i class="fa-solid fa-copy"></i> Copiar</button>
+                            <button class="btn-icon" id="btn-save-built" title="Guardar"><i class="fa-solid fa-bookmark"></i> Guardar</button>
+                        </div>
+                    </div>
+                    <div class="preview-body">
+                        <pre id="built-prompt-text">Rellena los campos a la izquierda para generar tu Prompt Maestro estructurado con técnicas de Few-Shot y Chain-of-Thought...</pre>
+                    </div>
+                    <div class="preview-footer">
+                        <span class="token-estimate"><i class="fa-solid fa-coins"></i> Estimación de Calidad: <strong>Excelente (98/100)</strong></span>
+                        <button class="btn-secondary btn-sm" id="btn-export-markdown"><i class="fa-solid fa-file-arrow-down"></i> Exportar .MD</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Pro Templates & Bundles -->
+        <div class="tab-content" id="tab-templates">
+            <div class="templates-header">
+                <h2>Pack de Automatización de Negocios ($50k Value)</h2>
+                <p>Estrategias listas para copiar y pegar que han generado miles de dólares a agencias y creadores.</p>
+            </div>
+
+            <div class="templates-grid">
+                <div class="template-card">
+                    <div class="template-badge">Módulo 1</div>
+                    <h3>SaaS Landing Page Conversion System</h3>
+                    <p>Secuencia completa de prompts para diseñar el copy de 5 secciones principales que convierten visitantes en clientes de pago.</p>
+                    <div class="template-meta">
+                        <span><i class="fa-solid fa-file-code"></i> 8 Prompts Enlazados</span>
+                        <span class="pro-tag"><i class="fa-solid fa-lock"></i> PRO</span>
+                    </div>
+                    <button class="btn-primary btn-sm btn-unlock-trigger">Ver Colección</button>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-badge">Módulo 2</div>
+                    <h3>Code Refactor & Bug Hunter Pro</h3>
+                    <p>Auditoría de código, optimización de algoritmos y conversión entre frameworks (React, Vue, Node, Python) con cero alucinaciones.</p>
+                    <div class="template-meta">
+                        <span><i class="fa-solid fa-terminal"></i> 12 Prompts de Código</span>
+                        <span class="pro-tag"><i class="fa-solid fa-lock"></i> PRO</span>
+                    </div>
+                    <button class="btn-primary btn-sm btn-unlock-trigger">Ver Colección</button>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-badge">Módulo 3</div>
+                    <h3>Cold Email & Outreach Monetization Engine</h3>
+                    <p>Cadena de 4 correos de venta en frío con tasa de apertura del +45% y respuesta garantizada para vender servicios de $500 - $2,000 USD.</p>
+                    <div class="template-meta">
+                        <span><i class="fa-solid fa-envelope"></i> 6 Prompts de Ventas</span>
+                        <span class="pro-tag"><i class="fa-solid fa-lock"></i> PRO</span>
+                    </div>
+                    <button class="btn-primary btn-sm btn-unlock-trigger">Ver Colección</button>
+                </div>
+
+                <div class="template-card">
+                    <div class="template-badge">Módulo 4</div>
+                    <h3>Social Media Viral Thread & Post Engine</h3>
+                    <p>Crea hilos virales de Twitter/X y posts de LinkedIn que atraen clientes calificados sin invertir en publicidad.</p>
+                    <div class="template-meta">
+                        <span><i class="fa-solid fa-share-nodes"></i> 10 Prompts Virales</span>
+                        <span class="pro-tag"><i class="fa-solid fa-lock"></i> PRO</span>
+                    </div>
+                    <button class="btn-primary btn-sm btn-unlock-trigger">Ver Colección</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: Saved Prompts -->
+        <div class="tab-content" id="tab-saved">
+            <div class="saved-header">
+                <h2>Mis Prompts Guardados</h2>
+                <button class="btn-secondary btn-sm" id="btn-export-all-saved"><i class="fa-solid fa-download"></i> Exportar Mis Guardados (JSON)</button>
+            </div>
+            <div class="grid-layout" id="saved-grid">
+                <div class="empty-state">
+                    <i class="fa-regular fa-bookmark"></i>
+                    <p>Aún no has guardado ningún prompt. Haz clic en el ícono de marcador en cualquier card para agregarlo a tus favoritos.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing Section -->
+        <section class="pricing-section" id="pricing">
+            <div class="pricing-header">
+                <span class="section-tag">Opciones de Monetización Directa</span>
+                <h2>Obtén Acceso Completo o Revende la Licencia Comercial</h2>
+                <p>Usa PromptCraft Studio Pro para tus propios proyectos o revéndelo como un producto digital de $29 USD.</p>
+            </div>
+
+            <div class="pricing-cards">
+                <!-- Free Tier -->
+                <div class="price-card">
+                    <div class="price-title">Edición Starter</div>
+                    <div class="price-amount">$0 <span>/ gratis</span></div>
+                    <p class="price-desc">Ideal para probar la herramienta y probar los 15 prompts públicos de muestra.</p>
+                    <ul class="price-features">
+                        <li><i class="fa-solid fa-check"></i> Acceso a 15 Prompts Básicos</li>
+                        <li><i class="fa-solid fa-check"></i> Generador de Prompts Simple</li>
+                        <li><i class="fa-solid fa-check"></i> Copia rápida al portapapeles</li>
+                        <li class="disabled"><i class="fa-solid fa-xmark"></i> Biblioteca Pro de 120+ Prompts</li>
+                        <li class="disabled"><i class="fa-solid fa-xmark"></i> Módulos de Automatización de Negocios</li>
+                        <li class="disabled"><i class="fa-solid fa-xmark"></i> Licencia de Reventa Comercial</li>
+                    </ul>
+                    <button class="btn-outline btn-block">Plan Actual</button>
+                </div>
+
+                <!-- Pro Tier (Highlighted) -->
+                <div class="price-card popular">
+                    <div class="badge-popular">MÁS POPULAR</div>
+                    <div class="price-title">Licencia PromptCraft PRO</div>
+                    <div class="price-amount">$29 <span>/ pago único</span></div>
+                    <p class="price-desc">Acceso ilimitado de por vida a la suite completa + futuras actualizaciones.</p>
+                    <ul class="price-features">
+                        <li><i class="fa-solid fa-check"></i> <strong>120+ Prompts de Alta Conversión</strong></li>
+                        <li><i class="fa-solid fa-check"></i> <strong>Creador Maestro Dinámico con 5 Parámetros</strong></li>
+                        <li><i class="fa-solid fa-check"></i> <strong>Packs de Automatización ($50k Value)</strong></li>
+                        <li><i class="fa-solid fa-check"></i> Exportación ilimitada a Markdown & JSON</li>
+                        <li><i class="fa-solid fa-check"></i> Soporte para Claude 3.5, GPT-4o, Gemini 1.5</li>
+                        <li><i class="fa-solid fa-check"></i> Actualizaciones de plantillas de por vida</li>
+                    </ul>
+                    <button class="btn-primary btn-block btn-buy-now" data-price="29"><i class="fa-solid fa-cart-shopping"></i> Comprar Licencia PRO ($29 USD)</button>
+                </div>
+
+                <!-- Developer / Agency Reseller Tier -->
+                <div class="price-card">
+                    <div class="price-title">Licencia Comercial Agency</div>
+                    <div class="price-amount">$49 <span>/ pago único</span></div>
+                    <p class="price-desc">Incluye todo lo del plan Pro + Código fuente completo para revender o usar en clientes.</p>
+                    <ul class="price-features">
+                        <li><i class="fa-solid fa-check"></i> Todo lo del plan PRO incluido</li>
+                        <li><i class="fa-solid fa-check"></i> <strong>Derechos de Reventa Comercial (100% de ganancia)</strong></li>
+                        <li><i class="fa-solid fa-check"></i> <strong>Código Fuente HTML/CSS/JS Editable</strong></li>
+                        <li><i class="fa-solid fa-check"></i> Kit de Marca & Campaña Social Integrado</li>
+                        <li><i class="fa-solid fa-check"></i> Guía de Lanzamiento en 1-Clic en Netlify</li>
+                    </ul>
+                    <button class="btn-secondary btn-block btn-buy-now" data-price="49"><i class="fa-solid fa-building"></i> Obtener Licencia Agency ($49 USD)</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="brand-name">PromptCraft PRO</span>
+                <p>Potenciado por NovaStack AI — Herramientas de software independientes para creadores y desarrolladores.</p>
+            </div>
+            <div class="footer-links">
+                <span>© 2026 NovaStack AI. Todos los derechos reservados.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Payment & Checkout Modal -->
+    <div class="modal-overlay" id="checkout-modal">
+        <div class="modal-card">
+            <button class="modal-close" id="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-header">
+                <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+                <h3>Finalizar Adquisición de Licencia</h3>
+                <p>Plan Seleccionado: <strong id="modal-plan-name">Licencia PRO</strong> (<span id="modal-plan-price">$29 USD</span>)</p>
+            </div>
+
+            <div class="modal-body">
+                <div class="payment-options">
+                    <a href="https://gumroad.com" target="_blank" class="payment-btn gumroad-btn" id="link-gumroad">
+                        <i class="fa-solid fa-bag-shopping"></i> Pagar con Gumroad / Tarjeta / PayPal
+                    </a>
+                    <a href="https://lemonsqueezy.com" target="_blank" class="payment-btn lemon-btn" id="link-lemon">
+                        <i class="fa-solid fa-lemon"></i> Pagar con Lemon Squeezy
+                    </a>
+                </div>
+
+                <div class="divider"><span>o simula la activación instantánea</span></div>
+
+                <div class="promo-box">
+                    <label for="promo-code">¿Tienes un Código Promocional o de Licencia?</label>
+                    <div class="input-inline">
+                        <input type="text" id="promo-code" placeholder="Ej: GOAL50USD">
+                        <button class="btn-primary" id="btn-apply-promo">Activar</button>
+                    </div>
+                    <small class="promo-tip">Ingresa <strong>GOAL50USD</strong> para desbloquear todas las funciones Pro instantáneamente en este navegador.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast" id="toast-notif">
+        <i class="fa-solid fa-circle-check toast-icon"></i>
+        <span id="toast-msg">Mensaje de notificación</span>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
