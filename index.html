@@ -77,13 +77,13 @@
             </div>
 
             <div class="category-pills" id="category-filters">
-                <button class="pill active" data-cat="all">Todos (120)</button>
-                <button class="pill" data-cat="coding"><i class="fa-solid fa-code"></i> Código & Dev</button>
-                <button class="pill" data-cat="marketing"><i class="fa-solid fa-chart-line"></i> Marketing & Ventas</button>
-                <button class="pill" data-cat="copywriting"><i class="fa-solid fa-pen-nib"></i> Copywriting</button>
-                <button class="pill" data-cat="business"><i class="fa-solid fa-briefcase"></i> Negocios & SaaS</button>
-                <button class="pill" data-cat="productivity"><i class="fa-solid fa-bolt"></i> Automatización</button>
-                <button class="pill" data-cat="pro"><i class="fa-solid fa-star"></i> Exclusivo Pro</button>
+                <button class="pill active" data-cat="all">Todos <span class="pill-count" id="count-all">0</span></button>
+                <button class="pill" data-cat="coding"><i class="fa-solid fa-code"></i> Código & Dev <span class="pill-count" id="count-coding">0</span></button>
+                <button class="pill" data-cat="marketing"><i class="fa-solid fa-chart-line"></i> Marketing & Ventas <span class="pill-count" id="count-marketing">0</span></button>
+                <button class="pill" data-cat="copywriting"><i class="fa-solid fa-pen-nib"></i> Copywriting <span class="pill-count" id="count-copywriting">0</span></button>
+                <button class="pill" data-cat="business"><i class="fa-solid fa-briefcase"></i> Negocios & SaaS <span class="pill-count" id="count-business">0</span></button>
+                <button class="pill" data-cat="productivity"><i class="fa-solid fa-bolt"></i> Automatización <span class="pill-count" id="count-productivity">0</span></button>
+                <button class="pill" data-cat="pro"><i class="fa-solid fa-star"></i> Exclusivo Pro <span class="pill-count" id="count-pro">0</span></button>
             </div>
         </div>
 
@@ -162,7 +162,7 @@
                         <pre id="built-prompt-text">Rellena los campos a la izquierda para generar tu Prompt Maestro estructurado con técnicas de Few-Shot y Chain-of-Thought...</pre>
                     </div>
                     <div class="preview-footer">
-                        <span class="token-estimate"><i class="fa-solid fa-coins"></i> Estimación de Calidad: <strong>Excelente (98/100)</strong></span>
+                        <span class="token-estimate" id="token-estimate-box"><i class="fa-solid fa-coins"></i> Estimación de Calidad: <strong>Excelente (98/100)</strong></span>
                         <button class="btn-secondary btn-sm" id="btn-export-markdown"><i class="fa-solid fa-file-arrow-down"></i> Exportar .MD</button>
                     </div>
                 </div>
@@ -177,7 +177,7 @@
             </div>
 
             <div class="templates-grid">
-                <div class="template-card">
+                <div class="template-card" data-module="1">
                     <div class="template-badge">Módulo 1</div>
                     <h3>SaaS Landing Page Conversion System</h3>
                     <p>Secuencia completa de prompts para diseñar el copy de 5 secciones principales que convierten visitantes en clientes de pago.</p>
@@ -185,10 +185,10 @@
                         <span><i class="fa-solid fa-file-code"></i> 8 Prompts Enlazados</span>
                         <span class="pro-tag"><i class="fa-solid fa-lock"></i> PRO</span>
                     </div>
-                    <button class="btn-primary btn-sm btn-unlock-trigger">Ver Colección</button>
+                    <button class="btn-primary btn-sm btn-unlock-trigger" data-module="1">Ver Colección</button>
                 </div>
 
-                <div class="template-card">
+                <div class="template-card" data-module="2">
                     <div class="template-badge">Módulo 2</div>
                     <h3>Code Refactor & Bug Hunter Pro</h3>
                     <p>Auditoría de código, optimización de algoritmos y conversión entre frameworks (React, Vue, Node, Python) con cero alucinaciones.</p>
@@ -196,10 +196,10 @@
                         <span><i class="fa-solid fa-terminal"></i> 12 Prompts de Código</span>
                         <span class="pro-tag"><i class="fa-solid fa-lock"></i> PRO</span>
                     </div>
-                    <button class="btn-primary btn-sm btn-unlock-trigger">Ver Colección</button>
+                    <button class="btn-primary btn-sm btn-unlock-trigger" data-module="2">Ver Colección</button>
                 </div>
 
-                <div class="template-card">
+                <div class="template-card" data-module="3">
                     <div class="template-badge">Módulo 3</div>
                     <h3>Cold Email & Outreach Monetization Engine</h3>
                     <p>Cadena de 4 correos de venta en frío con tasa de apertura del +45% y respuesta garantizada para vender servicios de $500 - $2,000 USD.</p>
@@ -207,10 +207,10 @@
                         <span><i class="fa-solid fa-envelope"></i> 6 Prompts de Ventas</span>
                         <span class="pro-tag"><i class="fa-solid fa-lock"></i> PRO</span>
                     </div>
-                    <button class="btn-primary btn-sm btn-unlock-trigger">Ver Colección</button>
+                    <button class="btn-primary btn-sm btn-unlock-trigger" data-module="3">Ver Colección</button>
                 </div>
 
-                <div class="template-card">
+                <div class="template-card" data-module="4">
                     <div class="template-badge">Módulo 4</div>
                     <h3>Social Media Viral Thread & Post Engine</h3>
                     <p>Crea hilos virales de Twitter/X y posts de LinkedIn que atraen clientes calificados sin invertir en publicidad.</p>
@@ -218,7 +218,7 @@
                         <span><i class="fa-solid fa-share-nodes"></i> 10 Prompts Virales</span>
                         <span class="pro-tag"><i class="fa-solid fa-lock"></i> PRO</span>
                     </div>
-                    <button class="btn-primary btn-sm btn-unlock-trigger">Ver Colección</button>
+                    <button class="btn-primary btn-sm btn-unlock-trigger" data-module="4">Ver Colección</button>
                 </div>
             </div>
         </div>
@@ -247,23 +247,23 @@
 
             <div class="pricing-cards">
                 <!-- Free Tier -->
-                <div class="price-card">
+                <div class="price-card" id="card-plan-starter">
                     <div class="price-title">Edición Starter</div>
                     <div class="price-amount">$0 <span>/ gratis</span></div>
-                    <p class="price-desc">Ideal para probar la herramienta y probar los 15 prompts públicos de muestra.</p>
+                    <p class="price-desc">Ideal para probar la herramienta y probar los prompts públicos de muestra.</p>
                     <ul class="price-features">
-                        <li><i class="fa-solid fa-check"></i> Acceso a 15 Prompts Básicos</li>
+                        <li><i class="fa-solid fa-check"></i> Acceso a Prompts Básicos</li>
                         <li><i class="fa-solid fa-check"></i> Generador de Prompts Simple</li>
                         <li><i class="fa-solid fa-check"></i> Copia rápida al portapapeles</li>
                         <li class="disabled"><i class="fa-solid fa-xmark"></i> Biblioteca Pro de 120+ Prompts</li>
                         <li class="disabled"><i class="fa-solid fa-xmark"></i> Módulos de Automatización de Negocios</li>
                         <li class="disabled"><i class="fa-solid fa-xmark"></i> Licencia de Reventa Comercial</li>
                     </ul>
-                    <button class="btn-outline btn-block">Plan Actual</button>
+                    <button class="btn-outline btn-block" id="btn-starter-status">Plan Actual</button>
                 </div>
 
                 <!-- Pro Tier (Highlighted) -->
-                <div class="price-card popular">
+                <div class="price-card popular" id="card-plan-pro">
                     <div class="badge-popular">MÁS POPULAR</div>
                     <div class="price-title">Licencia PromptCraft PRO</div>
                     <div class="price-amount">$29 <span>/ pago único</span></div>
@@ -276,11 +276,11 @@
                         <li><i class="fa-solid fa-check"></i> Soporte para Claude 3.5, GPT-4o, Gemini 1.5</li>
                         <li><i class="fa-solid fa-check"></i> Actualizaciones de plantillas de por vida</li>
                     </ul>
-                    <button class="btn-primary btn-block btn-buy-now" data-price="29"><i class="fa-solid fa-cart-shopping"></i> Comprar Licencia PRO ($29 USD)</button>
+                    <button class="btn-primary btn-block btn-buy-now" id="btn-plan-pro" data-price="29"><i class="fa-solid fa-cart-shopping"></i> Comprar Licencia PRO ($29 USD)</button>
                 </div>
 
                 <!-- Developer / Agency Reseller Tier -->
-                <div class="price-card">
+                <div class="price-card" id="card-plan-agency">
                     <div class="price-title">Licencia Comercial Agency</div>
                     <div class="price-amount">$49 <span>/ pago único</span></div>
                     <p class="price-desc">Incluye todo lo del plan Pro + Código fuente completo para revender o usar en clientes.</p>
@@ -291,7 +291,7 @@
                         <li><i class="fa-solid fa-check"></i> Kit de Marca & Campaña Social Integrado</li>
                         <li><i class="fa-solid fa-check"></i> Guía de Lanzamiento en 1-Clic en Netlify</li>
                     </ul>
-                    <button class="btn-secondary btn-block btn-buy-now" data-price="49"><i class="fa-solid fa-building"></i> Obtener Licencia Agency ($49 USD)</button>
+                    <button class="btn-secondary btn-block btn-buy-now" id="btn-plan-agency" data-price="49"><i class="fa-solid fa-building"></i> Obtener Licencia Agency ($49 USD)</button>
                 </div>
             </div>
         </section>
@@ -323,7 +323,7 @@
 
             <div class="modal-body">
                 <div class="payment-options">
-                    <a href="https://moosoficial.gumroad.com/l/promptcraft-pro" target="_blank" class="payment-btn gumroad-btn" id="link-gumroad">
+                    <a href="https://moosoficial.gumroad.com/l/promptcraft-pro" target="_blank" rel="noopener noreferrer" class="payment-btn gumroad-btn" id="link-gumroad">
                         <i class="fa-solid fa-bag-shopping"></i> Comprar Ahora con Gumroad / Tarjeta / PayPal ($29 USD)
                     </a>
                 </div>
@@ -338,6 +338,21 @@
                     </div>
                     <small class="promo-tip">Ingresa el código promocional <strong>GOAL50USD</strong> o <strong>PROMO2026</strong> para desbloquear todas las funciones Pro instantáneamente en este navegador.</small>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template Collection Viewer Modal -->
+    <div class="modal-overlay" id="template-modal">
+        <div class="modal-card modal-large">
+            <button class="modal-close" id="template-modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-header">
+                <div class="modal-icon"><i class="fa-solid fa-layer-group"></i></div>
+                <h3 id="template-modal-title">Colección de Prompts Pro</h3>
+                <p id="template-modal-desc">Prompts listos para copiar y usar en tu flujo de trabajo.</p>
+            </div>
+            <div class="modal-body" id="template-modal-body">
+                <!-- Dynamically populated -->
             </div>
         </div>
     </div>

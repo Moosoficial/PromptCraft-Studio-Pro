@@ -1,8 +1,8 @@
 /* ==========================================================================
-   PromptCraft Studio Pro - Interactive Application Logic
+   PromptCraft Studio Pro - Interactive Application Logic & QA Engine
    ========================================================================== */
 
-// 1. Initial State & Data Store
+// 1. Database of Master Prompts (16+ High-Value Engineered Prompts)
 const PROMPTS_DATABASE = [
     {
         id: 1,
@@ -140,17 +140,247 @@ Luego, para el cluster principal, crea un Content Brief detallado:
 - Título H1 optimizado con CTR magnético.
 - Estructura de encabezados H2 y H3.
 - Entidades semánticas clave que deben mencionarse.`
+    },
+    {
+        id: 9,
+        title: "Python Web Scraping & Data Extraction Pipeline",
+        category: "coding",
+        badge: "badge-code",
+        desc: "Script robusto con BeautifulSoup/Playwright, rotación de User-Agents y manejo de rate limits.",
+        llms: ["Claude 3.5 Sonnet", "GPT-4o"],
+        isPro: false,
+        prompt: `Actúa como Senior Data Engineer. Diseña un pipeline de web scraping en Python para extraer datos estructurados.
+
+Requisitos:
+1. Usar Playwright o BeautifulSoup con asyncio.
+2. Implementar rotación de User-Agent y reintentos exponenciales.
+3. Exportar resultados a un archivo CSV limpio y JSON validado.`
+    },
+    {
+        id: 10,
+        title: "High-Converting Facebook & Instagram Ad Copy Engine",
+        category: "copywriting",
+        badge: "badge-copywriting",
+        desc: "Crea 3 variaciones de anuncios (PAS, AIDA, BAB) para campañas de retargeting y tráfico frío.",
+        llms: ["GPT-4o", "Claude 3.5"],
+        isPro: false,
+        prompt: `Actúa como Media Buyer y Copywriter Senior. Crea 3 variaciones de texto publicitario para Meta Ads (Facebook/Instagram).
+
+Producto: [INSERTAR PRODUCTO]
+
+Variaciones requeridas:
+1. Fórmula PAS (Problema - Agitación - Solución).
+2. Fórmula AIDA (Atención - Interés - Deseo - Acción).
+3. Fórmula BAB (Before - After - Bridge).
+Incluye recomendaciones de ángulos creativos e íconos visuales.`
+    },
+    {
+        id: 11,
+        title: "Make / n8n Workflow Automation Architecture",
+        category: "productivity",
+        badge: "badge-pro-lock",
+        desc: "Diseña un flujo de trabajo sin código para conectar Webhooks, CRM, Slack y OpenAI API.",
+        llms: ["Claude 3.5", "Gemini Pro"],
+        isPro: true,
+        prompt: `Actúa como especialista en Automatización de Procesos (Make/n8n/Zapier). Diseña una arquitectura de flujo automatizado para:
+
+[DESCRIBIR PROCESO MANUAL O FLUJO DE TRABAJO]
+
+Proporciona:
+- Esquema paso a paso de los módulos y webhooks requeridos.
+- Mapeo de campos JSON entre servicios.
+- Estrategia de manejo de errores y notificaciones de fallback.`
+    },
+    {
+        id: 12,
+        title: "SaaS Pitch Deck & Investor Executive Summary",
+        category: "business",
+        badge: "badge-business",
+        desc: "Estructura narrativa de 10 diapositivas para convencer a inversores de ángel o Venture Capital.",
+        llms: ["GPT-4o", "Claude 3.5"],
+        isPro: true,
+        prompt: `Actúa como Venture Capital Partner & Startup Advisor. Redacta el guion y contenido para un Pitch Deck de 10 diapositivas para:
+
+Startup: [NOMBRE Y CONCEPTO]
+
+Diapositivas:
+1. Vision & Hook | 2. Problem | 3. Solution | 4. Market Size (TAM/SAM/SOM) | 5. Product | 6. Business Model | 7. Traction | 8. Go-To-Market | 9. Financial Projection | 10. The Ask.`
+    },
+    {
+        id: 13,
+        title: "Docker & Kubernetes Deployment Manifest Generator",
+        category: "coding",
+        badge: "badge-code",
+        desc: "Genera Dockerfile multi-stage y archivos YAML de Kubernetes optimizados para producción.",
+        llms: ["Claude 3.5 Sonnet"],
+        isPro: true,
+        prompt: `Actúa como Principal DevOps & Cloud Engineer. Genera la configuración completa de despliegue para:
+
+Aplicación: [LENGUAJE / FRAMEWORK]
+
+Incluye:
+1. Dockerfile Multi-Stage optimizado para tamaño mínimo de imagen.
+2. deployment.yaml y service.yaml con Resource Limits e Ingress.
+3. Health check endpoints y variables de entorno seguras.`
+    },
+    {
+        id: 14,
+        title: "LinkedIn Thought Leadership & Lead Magnet Post",
+        category: "copywriting",
+        badge: "badge-copywriting",
+        desc: "Post de LinkedIn formateado con espacio en blanco, gancho emocional y entrega de recurso gratuito.",
+        llms: ["GPT-4o"],
+        isPro: false,
+        prompt: `Escribe un post de LinkedIn de autoridad enfocado en captar leads calificados.
+
+Tema: [RECURSO GRATUITO O APRENDIZAJE]
+
+Reglas:
+- Gancho de 1 línea impactante.
+- Frases cortas y párrafos de 1 o 2 líneas para lectura ágil en móvil.
+- Call to action claro: "Comenta [PALABRA CLAVE] y te lo envío por mensaje privado".`
+    },
+    {
+        id: 15,
+        title: "Customer Support Automation Bot Persona & FAQ Solver",
+        category: "marketing",
+        badge: "badge-marketing",
+        desc: "System Prompt empático para bots de atención al cliente con instrucciones estricta anti-alucinaciones.",
+        llms: ["GPT-4o", "Gemini 1.5"],
+        isPro: true,
+        prompt: `Actúa como el Asistente Virtual de Atención al Cliente de [EMPRESA].
+
+Instrucciones de comportamiento:
+1. Tono empático, resolutivo y educado.
+2. Basar las respuestas EXCLUSIVAMENTE en la siguiente base de conocimientos: [INSERTAR FAQ].
+3. Si no conoces la respuesta, responde: "Lamento no tener esa información directa. Te conectaré con un agente humano inmediatamente."`
+    },
+    {
+        id: 16,
+        title: "Executive Weekly Summary & KPI Dashboard Prompt",
+        category: "productivity",
+        badge: "badge-pro-lock",
+        desc: "Sintetiza métricas brutas y reportes en un informe ejecutivo listo para la junta directiva.",
+        llms: ["Claude 3.5", "GPT-4o"],
+        isPro: true,
+        prompt: `Actúa como Chief of Staff. Transforma las siguientes métricas desordenadas en un reporte ejecutivo semanal:
+
+Métricas: [INSERTAR DATOS DE LA SEMANA]
+
+Secciones del reporte:
+- Executive Summary (3 viñetas clave).
+- Wins & Logros Principales.
+- Bottlenecks & Riesgos Detectados.
+- Plan de Acción Prioritario para la Próxima Semana.`
     }
 ];
 
+// 2. Pro Template Bundles / Modules Data
+const TEMPLATE_MODULES = {
+    1: {
+        title: "SaaS Landing Page Conversion System",
+        badge: "Módulo 1",
+        desc: "Secuencia completa de prompts para diseñar el copy de 5 secciones principales que convierten visitantes en clientes de pago.",
+        prompts: [
+            {
+                name: "Section 1: Hero Banner & UVP Hook",
+                text: "Escribe el H1, H2 y CTA para el Hero Banner de un SaaS de [CATEGORÍA]. Debe resolver el dolor principal en 5 segundos."
+            },
+            {
+                name: "Section 2: Social Proof & Client Logos Counter",
+                text: "Redacta frases de prueba social y subtítulos de autoridad para mostrar testimonios de clientes B2B."
+            },
+            {
+                name: "Section 3: Feature Matrix & Benefit Breakdown",
+                text: "Diseña la sección de 3 características principales enfocadas en BENEFICIOS (no solo specs técnicas)."
+            },
+            {
+                name: "Section 4: Pricing Table Copy & Plan Distinction",
+                text: "Escribe los descripciones de planes (Starter vs Pro vs Enterprise) destacando el valor percibido del plan Pro."
+            },
+            {
+                name: "Section 5: Guarantee & Risk Reversal CTA",
+                text: "Crea una sección de cierre con garantía de devolución de 30 días y llamado a la acción final urgente."
+            }
+        ]
+    },
+    2: {
+        title: "Code Refactor & Bug Hunter Pro",
+        badge: "Módulo 2",
+        desc: "Auditoría de código, optimización de algoritmos y conversión entre frameworks (React, Vue, Node, Python) con cero alucinaciones.",
+        prompts: [
+            {
+                name: "Auditoría OWASP Top 10",
+                text: "Analiza el siguiente código y detecta posibles fallas de seguridad OWASP Top 10 con sugerencias de parches."
+            },
+            {
+                name: "Optimización de Complejidad O(n)",
+                text: "Refactoriza el siguiente algoritmo para reducir su complejidad de tiempo O(n^2) a O(n log n) o O(n)."
+            },
+            {
+                name: "Migración de Componente React a Vue 3",
+                text: "Convierte el siguiente componente React (TypeScript + Tailwind) a Vue 3 Script Setup manteniendo la misma lógica."
+            },
+            {
+                name: "Generador de Tests Unitarios (Jest/Vitest)",
+                text: "Genera una suite completa de pruebas unitarias cubriendo edge cases y casos de falla para la función adjunta."
+            }
+        ]
+    },
+    3: {
+        title: "Cold Email & Outreach Monetization Engine",
+        badge: "Módulo 3",
+        desc: "Cadena de 4 correos de venta en frío con tasa de apertura del +45% y respuesta garantizada para vender servicios de $500 - $2,000 USD.",
+        prompts: [
+            {
+                name: "Email 1: The Soft Pattern Disrupt Hook",
+                text: "Redacta el primer correo de prospección en frío (máx 75 palabras) con propuesta de valor hiper-específica."
+            },
+            {
+                name: "Email 2: Case Study & Social Proof Follow-up",
+                text: "Escribe el seguimiento 3 días después citando un caso de estudio con resultados cuantitativos."
+            },
+            {
+                name: "Email 3: The Quick Question Reframe",
+                text: "Redacta un correo de 2 líneas preguntando si el proyecto sigue siendo una prioridad este trimestre."
+            },
+            {
+                name: "Email 4: Breakup Email with Unexpected Value",
+                text: "Crea el último correo de la secuencia retirando la oferta elegantemente con un recurso de regalo."
+            }
+        ]
+    },
+    4: {
+        title: "Social Media Viral Thread & Post Engine",
+        badge: "Módulo 4",
+        desc: "Crea hilos virales de Twitter/X y posts de LinkedIn que atraen clientes calificados sin invertir en publicidad.",
+        prompts: [
+            {
+                name: "X/Twitter Storytelling Thread",
+                text: "Escribe un hilo de 8 tweets contando la historia de cómo se resolvió [PROBLEMA] usando una estrategia contraintuitiva."
+            },
+            {
+                name: "LinkedIn Carousel Slide Script",
+                text: "Crea el contenido textual de 6 diapositivas para un carrusel de LinkedIn sobre [TEMA TÉCNICO/NEGOCIOS]."
+            },
+            {
+                name: "Contrarian Industry Hot Take",
+                text: "Genera una publicación opinativa sobre una creencia popular en la industria que es errónea y por qué."
+            }
+        ]
+    }
+};
+
+// 3. Application State Store
 let state = {
     isPro: localStorage.getItem('promptcraft_pro') === 'true',
     savedPrompts: JSON.parse(localStorage.getItem('promptcraft_saved') || '[]'),
+    customSavedPrompts: JSON.parse(localStorage.getItem('promptcraft_custom_saved') || '[]'),
     activeCategory: 'all',
     searchQuery: ''
 };
 
-// 2. DOM Elements
+// 4. DOM Elements Lookup
 const promptsGrid = document.getElementById('prompts-grid');
 const savedGrid = document.getElementById('saved-grid');
 const savedCount = document.getElementById('saved-count');
@@ -173,10 +403,17 @@ const builtPromptText = document.getElementById('built-prompt-text');
 const btnCopyBuilt = document.getElementById('btn-copy-built');
 const btnSaveBuilt = document.getElementById('btn-save-built');
 const btnExportMarkdown = document.getElementById('btn-export-markdown');
+const tokenEstimateBox = document.getElementById('token-estimate-box');
 
-// Modal & Checkout
+// Modals & Triggers
 const checkoutModal = document.getElementById('checkout-modal');
 const modalCloseBtn = document.getElementById('modal-close');
+const templateModal = document.getElementById('template-modal');
+const templateModalCloseBtn = document.getElementById('template-modal-close');
+const templateModalTitle = document.getElementById('template-modal-title');
+const templateModalDesc = document.getElementById('template-modal-desc');
+const templateModalBody = document.getElementById('template-modal-body');
+
 const btnGetLicense = document.getElementById('btn-get-license');
 const btnDemoPro = document.getElementById('btn-demo-pro');
 const buyNowBtns = document.querySelectorAll('.btn-buy-now');
@@ -186,18 +423,61 @@ const promoCodeInput = document.getElementById('promo-code');
 const toastNotif = document.getElementById('toast-notif');
 const toastMsg = document.getElementById('toast-msg');
 
-// 3. Application Initialization
+// 5. Application Initialization
 document.addEventListener('DOMContentLoaded', () => {
     updateSavedCount();
+    updatePillCounts();
     renderLibrary();
     setupEventListeners();
-    
+    updateBuilderMetrics();
+
     if (state.isPro) {
         enableProModeVisuals();
     }
 });
 
-// 4. Render Functions
+// 6. Metrics & Category Counts Calculators
+function updatePillCounts() {
+    const counts = {
+        all: PROMPTS_DATABASE.length,
+        coding: PROMPTS_DATABASE.filter(p => p.category === 'coding').length,
+        marketing: PROMPTS_DATABASE.filter(p => p.category === 'marketing').length,
+        copywriting: PROMPTS_DATABASE.filter(p => p.category === 'copywriting').length,
+        business: PROMPTS_DATABASE.filter(p => p.category === 'business').length,
+        productivity: PROMPTS_DATABASE.filter(p => p.category === 'productivity').length,
+        pro: PROMPTS_DATABASE.filter(p => p.isPro).length
+    };
+
+    for (const key in counts) {
+        const el = document.getElementById(`count-${key}`);
+        if (el) el.textContent = `(${counts[key]})`;
+    }
+}
+
+function updateBuilderMetrics() {
+    const text = builtPromptText ? builtPromptText.textContent : '';
+    const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+    const estTokens = Math.ceil(words * 1.35);
+
+    let score = 50;
+    if (bRole && bRole.value) score += 10;
+    if (bTask && bTask.value.length > 10) score += 15;
+    if (bContext && bContext.value.length > 10) score += 15;
+    if (bFormat && bFormat.value) score += 5;
+    if (bTone && bTone.value) score += 5;
+    score = Math.min(100, score);
+
+    let qualityLabel = "Básica (60/100)";
+    if (score >= 90) qualityLabel = "Excelente (98/100)";
+    else if (score >= 75) qualityLabel = "Muy Buena (85/100)";
+    else if (score >= 60) qualityLabel = "Aceptable (70/100)";
+
+    if (tokenEstimateBox) {
+        tokenEstimateBox.innerHTML = `<i class="fa-solid fa-coins"></i> Tokens: <strong>~${estTokens}</strong> | Calidad: <strong>${qualityLabel}</strong>`;
+    }
+}
+
+// 7. Core Render Functions
 function renderLibrary() {
     promptsGrid.innerHTML = '';
 
@@ -208,9 +488,10 @@ function renderLibrary() {
                 ? p.isPro 
                 : p.category === state.activeCategory;
 
-        const matchesSearch = p.title.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
-                              p.desc.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
-                              p.prompt.toLowerCase().includes(state.searchQuery.toLowerCase());
+        const query = state.searchQuery.toLowerCase();
+        const matchesSearch = p.title.toLowerCase().includes(query) ||
+                              p.desc.toLowerCase().includes(query) ||
+                              p.prompt.toLowerCase().includes(query);
 
         return matchesCategory && matchesSearch;
     });
@@ -250,7 +531,7 @@ function renderLibrary() {
                     ${p.llms.map(l => `<span><i class="fa-solid fa-microchip"></i> ${l}</span>`).join(' • ')}
                 </div>
                 <div class="card-actions">
-                    <button class="btn-icon btn-toggle-save" data-id="${p.id}" title="${isSaved ? 'Quitar de guardados' : 'Guardar'}">
+                    <button class="btn-icon btn-toggle-save" data-id="${p.id}" title="${isSaved ? 'Quitar de guardados' : 'Guardar en favoritos'}">
                         <i class="${isSaved ? 'fa-solid' : 'fa-regular'} fa-bookmark" style="${isSaved ? 'color: var(--accent-gold);' : ''}"></i>
                     </button>
                     <button class="btn-primary btn-sm btn-copy-prompt" data-id="${p.id}">
@@ -268,17 +549,19 @@ function renderLibrary() {
 function renderSaved() {
     savedGrid.innerHTML = '';
     const savedItems = PROMPTS_DATABASE.filter(p => state.savedPrompts.includes(p.id));
+    const customItems = state.customSavedPrompts || [];
 
-    if (savedItems.length === 0) {
+    if (savedItems.length === 0 && customItems.length === 0) {
         savedGrid.innerHTML = `
             <div class="empty-state">
                 <i class="fa-regular fa-bookmark"></i>
-                <p>Aún no has guardado ningún prompt. Haz clic en el ícono de marcador en cualquier card para agregarlo a tus favoritos.</p>
+                <p>Aún no has guardado ningún prompt. Haz clic en el ícono de marcador en cualquier card o guarda un prompt generado en el Creador Dinámico.</p>
             </div>
         `;
         return;
     }
 
+    // 1. Render Bookmarked Database Prompts
     savedItems.forEach(p => {
         const card = document.createElement('div');
         card.className = 'prompt-card';
@@ -296,7 +579,7 @@ function renderSaved() {
                     ${p.llms.map(l => `<span><i class="fa-solid fa-microchip"></i> ${l}</span>`).join(' • ')}
                 </div>
                 <div class="card-actions">
-                    <button class="btn-icon btn-toggle-save" data-id="${p.id}" title="Quitar">
+                    <button class="btn-icon btn-toggle-save" data-id="${p.id}" title="Quitar de marcadores">
                         <i class="fa-solid fa-trash" style="color: #f87171;"></i>
                     </button>
                     <button class="btn-primary btn-sm btn-copy-prompt" data-id="${p.id}">
@@ -308,10 +591,40 @@ function renderSaved() {
         savedGrid.appendChild(card);
     });
 
+    // 2. Render Custom Built Saved Prompts
+    customItems.forEach((c, index) => {
+        const card = document.createElement('div');
+        card.className = 'prompt-card custom-saved-card';
+        card.innerHTML = `
+            <div>
+                <div class="card-header">
+                    <h3 class="card-title">${escapeHtml(c.title || 'Prompt Maestro Personalizado')}</h3>
+                    <span class="card-badge badge-custom"><i class="fa-solid fa-wand-magic-sparkles"></i> PERSONALIZADO</span>
+                </div>
+                <p class="card-desc">Creado en el Generador Dinámico de Prompts (${c.date || 'Reciente'}).</p>
+                <div class="card-prompt-box">${escapeHtml(c.prompt)}</div>
+            </div>
+            <div class="card-footer">
+                <div class="card-llms">
+                    <span><i class="fa-solid fa-sliders"></i> Generador Dinámico</span>
+                </div>
+                <div class="card-actions">
+                    <button class="btn-icon btn-remove-custom" data-index="${index}" title="Eliminar prompt personalizado">
+                        <i class="fa-solid fa-trash" style="color: #f87171;"></i>
+                    </button>
+                    <button class="btn-primary btn-sm btn-copy-custom" data-index="${index}">
+                        <i class="fa-solid fa-copy"></i> Copiar
+                    </button>
+                </div>
+            </div>
+        `;
+        savedGrid.appendChild(card);
+    });
+
     attachCardEventListeners();
 }
 
-// 5. Event Listeners Setup
+// 8. Event Listeners Setup
 function setupEventListeners() {
     // Navigation Tabs
     navLinks.forEach(link => {
@@ -354,16 +667,24 @@ function setupEventListeners() {
         });
     });
 
-    // Builder Role Selector
+    // Builder Form Controls
     bRole.addEventListener('change', (e) => {
         bCustomRoleGroup.style.display = e.target.value === 'Custom' ? 'block' : 'none';
+        updateBuilderMetrics();
+    });
+
+    [bCustomRole, bTask, bContext, bFormat, bTone].forEach(el => {
+        if (el) {
+            el.addEventListener('input', updateBuilderMetrics);
+            el.addEventListener('change', updateBuilderMetrics);
+        }
     });
 
     // Generate Custom Prompt
     btnGenerateCustom.addEventListener('click', () => {
-        const role = bRole.value === 'Custom' ? (bCustomRole.value || 'Experto') : bRole.value;
-        const task = bTask.value || 'Crear una solución optimizada';
-        const context = bContext.value || 'Para uso profesional en desarrollo e inteligencia artificial';
+        const role = bRole.value === 'Custom' ? (bCustomRole.value.trim() || 'Experto') : bRole.value;
+        const task = bTask.value.trim() || 'Crear una solución optimizada de alto impacto';
+        const context = bContext.value.trim() || 'Para uso profesional en desarrollo e inteligencia artificial';
         const format = bFormat.value;
         const tone = bTone.value;
 
@@ -377,20 +698,46 @@ ${task}
 ${context}
 
 [RESTRICCIONES & TONO DE VOZ]
-- Mantiene un tono ${tone}.
+- Mantén un tono ${tone}.
 - Evita explicaciones superficiales o genéricas; sé directo y de alto impacto.
 - Aplica razonamiento paso a paso (Chain-of-Thought) antes de entregar el resultado final.
 
-[FORMATO DE SALIDA DE REQUERIDO]
+[FORMATO DE SALIDA REQUERIDO]
 Proporciona la respuesta estructurada en: ${format}.`;
 
         builtPromptText.textContent = masterPrompt;
+        updateBuilderMetrics();
         showToast('¡Prompt Maestro generado con éxito!');
     });
 
     // Builder Actions
     btnCopyBuilt.addEventListener('click', () => {
-        copyToClipboard(builtPromptText.textContent);
+        copyToClipboard(builtPromptText.textContent, btnCopyBuilt);
+    });
+
+    // Fix: Wire up btnSaveBuilt properly
+    btnSaveBuilt.addEventListener('click', () => {
+        const promptContent = builtPromptText.textContent.trim();
+        if (!promptContent || promptContent.startsWith('Rellena los campos')) {
+            showToast('⚠️ Primero genera un prompt maestro antes de guardar.');
+            return;
+        }
+
+        const role = bRole.value === 'Custom' ? (bCustomRole.value || 'Personalizado') : bRole.value;
+        const newCustomPrompt = {
+            title: `Prompt: ${role}`,
+            prompt: promptContent,
+            date: new Date().toLocaleDateString('es-ES', { month: 'short', day: 'numeric' })
+        };
+
+        state.customSavedPrompts.push(newCustomPrompt);
+        localStorage.setItem('promptcraft_custom_saved', JSON.stringify(state.customSavedPrompts));
+        updateSavedCount();
+        showToast('📌 ¡Prompt personalizado guardado en tus marcadores!');
+        
+        if (document.getElementById('tab-saved').classList.contains('active')) {
+            renderSaved();
+        }
     });
 
     btnExportMarkdown.addEventListener('click', () => {
@@ -404,7 +751,11 @@ Proporciona la respuesta estructurada en: ${format}.`;
     });
 
     btnDemoPro.addEventListener('click', () => {
-        openModal('Licencia PRO', '$29 USD');
+        if (state.isPro) {
+            showToast('✓ Ya tienes activada la Licencia PRO');
+        } else {
+            openModal('Licencia PRO', '$29 USD');
+        }
     });
 
     buyNowBtns.forEach(btn => {
@@ -414,9 +765,15 @@ Proporciona la respuesta estructurada en: ${format}.`;
         });
     });
 
+    // Template Module Cards Click Handler
     unlockTriggers.forEach(btn => {
         btn.addEventListener('click', () => {
-            openModal('Pack de Automatización PRO', '$29 USD');
+            const moduleId = btn.getAttribute('data-module');
+            if (!state.isPro) {
+                openModal('Pack de Automatización PRO', '$29 USD');
+            } else {
+                openTemplateModal(moduleId);
+            }
         });
     });
 
@@ -425,22 +782,27 @@ Proporciona la respuesta estructurada en: ${format}.`;
         if (e.target === checkoutModal) closeModal();
     });
 
-    // Promo Code Handler
-    btnApplyPromo.addEventListener('click', () => {
-        const code = promoCodeInput.value.trim().toUpperCase();
-        const validCodes = ['GOAL50USD', 'PROMO2026', 'LAUNCH2026', 'NOVAPRO', 'DEMOPRO'];
-        
-        if (validCodes.includes(code)) {
-            state.isPro = true;
-            localStorage.setItem('promptcraft_pro', 'true');
-            enableProModeVisuals();
-            renderLibrary();
+    if (templateModalCloseBtn) templateModalCloseBtn.addEventListener('click', closeTemplateModal);
+    if (templateModal) {
+        templateModal.addEventListener('click', (e) => {
+            if (e.target === templateModal) closeTemplateModal();
+        });
+    }
+
+    // Keyboard Escape Listener for Modals
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
             closeModal();
-            showToast('🎉 ¡Licencia PRO Desbloqueada con Éxito!');
-        } else if (code === '') {
-            showToast('⚠️ Ingresa un código promocional');
-        } else {
-            showToast('❌ Código no válido. Ingresa GOAL50USD o PROMO2026');
+            closeTemplateModal();
+        }
+    });
+
+    // Promo Code Handler
+    btnApplyPromo.addEventListener('click', applyPromoCode);
+    promoCodeInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            applyPromoCode();
         }
     });
 
@@ -449,28 +811,44 @@ Proporciona la respuesta estructurada en: ${format}.`;
     if (btnExportSaved) {
         btnExportSaved.addEventListener('click', () => {
             const savedItems = PROMPTS_DATABASE.filter(p => state.savedPrompts.includes(p.id));
-            downloadFile('mis-prompts-guardados.json', JSON.stringify(savedItems, null, 2));
+            const customItems = state.customSavedPrompts || [];
+            
+            if (savedItems.length === 0 && customItems.length === 0) {
+                showToast('⚠️ No tienes prompts guardados para exportar.');
+                return;
+            }
+
+            const exportPayload = {
+                exportDate: new Date().toISOString(),
+                savedDatabasePrompts: savedItems,
+                customPrompts: customItems
+            };
+
+            downloadFile('mis-prompts-guardados.json', JSON.stringify(exportPayload, null, 2));
         });
     }
 }
 
 function attachCardEventListeners() {
+    // Copy buttons in Database Prompt Cards
     document.querySelectorAll('.btn-copy-prompt').forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.onclick = () => {
             const id = parseInt(btn.getAttribute('data-id'));
             const p = PROMPTS_DATABASE.find(item => item.id === id);
+            if (!p) return;
             
             if (p.isPro && !state.isPro) {
                 openModal('Licencia PRO', '$29 USD');
                 return;
             }
 
-            copyToClipboard(p.prompt);
-        });
+            copyToClipboard(p.prompt, btn);
+        };
     });
 
+    // Toggle Save buttons in Database Prompt Cards
     document.querySelectorAll('.btn-toggle-save').forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.onclick = () => {
             const id = parseInt(btn.getAttribute('data-id'));
             const index = state.savedPrompts.indexOf(id);
             
@@ -488,13 +866,56 @@ function attachCardEventListeners() {
             if (document.getElementById('tab-saved').classList.contains('active')) {
                 renderSaved();
             }
-        });
+        };
+    });
+
+    // Copy custom saved prompts
+    document.querySelectorAll('.btn-copy-custom').forEach(btn => {
+        btn.onclick = () => {
+            const index = parseInt(btn.getAttribute('data-index'));
+            const item = state.customSavedPrompts[index];
+            if (item && item.prompt) {
+                copyToClipboard(item.prompt, btn);
+            }
+        };
+    });
+
+    // Remove custom saved prompts
+    document.querySelectorAll('.btn-remove-custom').forEach(btn => {
+        btn.onclick = () => {
+            const index = parseInt(btn.getAttribute('data-index'));
+            state.customSavedPrompts.splice(index, 1);
+            localStorage.setItem('promptcraft_custom_saved', JSON.stringify(state.customSavedPrompts));
+            updateSavedCount();
+            showToast('Prompt personalizado eliminado');
+            renderSaved();
+        };
     });
 }
 
-// 6. Helpers & Utilities
+function applyPromoCode() {
+    const code = promoCodeInput.value.trim().toUpperCase();
+    const validCodes = ['GOAL50USD', 'PROMO2026', 'LAUNCH2026', 'NOVAPRO', 'DEMOPRO'];
+    
+    if (validCodes.includes(code)) {
+        state.isPro = true;
+        localStorage.setItem('promptcraft_pro', 'true');
+        enableProModeVisuals();
+        renderLibrary();
+        closeModal();
+        showToast('🎉 ¡Licencia PRO Desbloqueada con Éxito!');
+    } else if (code === '') {
+        showToast('⚠️ Ingresa un código promocional');
+    } else {
+        showToast('❌ Código no válido. Ingresa GOAL50USD o PROMO2026');
+    }
+}
+
+// 9. Helpers & Visual Updates
 function updateSavedCount() {
-    savedCount.textContent = state.savedPrompts.length;
+    const dbCount = state.savedPrompts.length;
+    const customCount = (state.customSavedPrompts || []).length;
+    savedCount.textContent = dbCount + customCount;
 }
 
 function enableProModeVisuals() {
@@ -503,9 +924,38 @@ function enableProModeVisuals() {
         badge.textContent = 'PRO ACTIVADO';
         badge.style.background = 'linear-gradient(135deg, #10b981, #059669)';
     }
-    btnDemoPro.innerHTML = '<i class="fa-solid fa-circle-check"></i> Modo PRO Activo';
-    btnDemoPro.style.borderColor = '#10b981';
-    btnDemoPro.style.color = '#10b981';
+    if (btnDemoPro) {
+        btnDemoPro.innerHTML = '<i class="fa-solid fa-circle-check"></i> Modo PRO Activo';
+        btnDemoPro.style.borderColor = '#10b981';
+        btnDemoPro.style.color = '#10b981';
+    }
+
+    // Update Pro Template Cards UI
+    document.querySelectorAll('.template-card').forEach(card => {
+        const proTag = card.querySelector('.pro-tag');
+        if (proTag) {
+            proTag.className = 'pro-tag unlocked';
+            proTag.innerHTML = '<i class="fa-solid fa-circle-check"></i> DESBLOQUEADO';
+        }
+        const btn = card.querySelector('.btn-unlock-trigger');
+        if (btn) {
+            btn.innerHTML = '<i class="fa-solid fa-folder-open"></i> Ver Prompts';
+        }
+    });
+
+    // Update Pricing Cards Status
+    const starterBtn = document.getElementById('btn-starter-status');
+    if (starterBtn) {
+        starterBtn.textContent = 'Plan Gratuito';
+        starterBtn.disabled = true;
+    }
+
+    const proBtn = document.getElementById('btn-plan-pro');
+    if (proBtn) {
+        proBtn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Licencia PRO Activa';
+        proBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+        proBtn.style.boxShadow = '0 4px 15px rgba(16, 185, 129, 0.4)';
+    }
 }
 
 function openModal(planName, price) {
@@ -530,11 +980,63 @@ function closeModal() {
     checkoutModal.classList.remove('active');
 }
 
-function copyToClipboard(text) {
+function openTemplateModal(moduleId) {
+    const mod = TEMPLATE_MODULES[moduleId];
+    if (!mod) return;
+
+    templateModalTitle.textContent = `${mod.badge} — ${mod.title}`;
+    templateModalDesc.textContent = mod.desc;
+
+    let html = '<div class="template-prompts-list">';
+    mod.prompts.forEach((p, idx) => {
+        html += `
+            <div class="template-prompt-item">
+                <div class="t-prompt-header">
+                    <h4>${idx + 1}. ${escapeHtml(p.name)}</h4>
+                    <button class="btn-primary btn-sm btn-copy-tmpl" data-text="${escapeHtml(p.text)}">
+                        <i class="fa-solid fa-copy"></i> Copiar
+                    </button>
+                </div>
+                <div class="t-prompt-body">${escapeHtml(p.text)}</div>
+            </div>
+        `;
+    });
+    html += '</div>';
+
+    templateModalBody.innerHTML = html;
+
+    // Attach copy handlers inside template modal
+    templateModalBody.querySelectorAll('.btn-copy-tmpl').forEach(b => {
+        b.onclick = () => {
+            const text = b.getAttribute('data-text');
+            copyToClipboard(text, b);
+        };
+    });
+
+    templateModal.classList.add('active');
+}
+
+function closeTemplateModal() {
+    if (templateModal) templateModal.classList.remove('active');
+}
+
+function copyToClipboard(text, btnElement) {
     navigator.clipboard.writeText(text).then(() => {
         showToast('¡Prompt copiado al portapapeles!');
+
+        if (btnElement) {
+            const origHTML = btnElement.innerHTML;
+            btnElement.innerHTML = '<i class="fa-solid fa-check"></i> ¡Copiado!';
+            btnElement.style.background = '#10b981';
+            btnElement.style.color = '#fff';
+            setTimeout(() => {
+                btnElement.innerHTML = origHTML;
+                btnElement.style.background = '';
+                btnElement.style.color = '';
+            }, 2000);
+        }
     }).catch(err => {
-        showToast('Error al copiar');
+        showToast('Error al copiar el texto');
     });
 }
 
@@ -558,6 +1060,7 @@ function showToast(message) {
 }
 
 function escapeHtml(text) {
+    if (!text) return '';
     return text.replace(/&/g, "&amp;")
                .replace(/</g, "&lt;")
                .replace(/>/g, "&gt;")

@@ -1009,3 +1009,172 @@ body {
 
 .footer-brand p { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.35rem; }
 .footer-links { font-size: 0.82rem; color: var(--text-dim); }
+
+/* ==========================================================================
+   New UI Components & Modal Additions
+   ========================================================================== */
+.pill-count {
+    font-size: 0.78rem;
+    opacity: 0.85;
+    margin-left: 0.2rem;
+}
+
+.badge-custom {
+    background: rgba(139, 92, 246, 0.2);
+    color: #c084fc;
+    border: 1px solid rgba(139, 92, 246, 0.4);
+}
+
+.pro-tag.unlocked {
+    color: var(--accent-emerald);
+}
+
+/* Modal Large for Template Collection */
+.modal-card.modal-large {
+    max-width: 760px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-large .modal-body {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.template-prompts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.template-prompt-item {
+    background: rgba(10, 13, 20, 0.8);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+}
+
+.t-prompt-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.t-prompt-header h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+}
+
+.t-prompt-body {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: #e5e7eb;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.75rem;
+    border-radius: 6px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* ==========================================================================
+   Responsive Media Queries (Mobile & Tablet)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.85rem;
+    }
+
+    .brand {
+        justify-content: center;
+    }
+
+    .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+    }
+
+    .nav-link {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.82rem;
+    }
+
+    .nav-actions {
+        justify-content: center;
+    }
+
+    .hero-banner {
+        padding: 1.75rem;
+    }
+
+    .hero-title {
+        font-size: 1.75rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .hero-stats {
+        gap: 1.25rem;
+        flex-wrap: wrap;
+    }
+
+    .stat-num {
+        font-size: 1.3rem;
+    }
+
+    .category-pills {
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .pill {
+        white-space: nowrap;
+        font-size: 0.8rem;
+    }
+
+    .grid-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .pricing-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-card {
+        padding: 1.5rem;
+        width: 95%;
+    }
+
+    .toast {
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.45rem;
+    }
+
+    .btn-primary, .btn-secondary, .btn-outline {
+        padding: 0.5rem 0.85rem;
+        font-size: 0.82rem;
+    }
+
+    .price-amount {
+        font-size: 2.2rem;
+    }
+}
