@@ -208,8 +208,10 @@ body {
 }
 
 .btn-primary:hover {
-    background: #27272a;
-    border-color: #27272a;
+    background: #18181b;
+    border-color: #18181b;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px -4px rgba(245, 158, 11, 0.45), 0 4px 20px -2px rgba(16, 185, 129, 0.35), 0 0 15px rgba(56, 189, 248, 0.25);
 }
 
 .btn-secondary {
@@ -421,9 +423,10 @@ body {
 }
 
 .pill:hover {
-    color: var(--text-main);
-    border-color: var(--border-hover);
-    background: #f4f4f5;
+    color: #09090b;
+    border-color: rgba(245, 158, 11, 0.45);
+    background: #ffffff;
+    box-shadow: 0 4px 14px -2px rgba(245, 158, 11, 0.25), 0 0 8px rgba(56, 189, 248, 0.2);
 }
 
 .pill.active {
@@ -431,7 +434,7 @@ body {
     color: #ffffff;
     border-color: #09090b;
     font-weight: 600;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 4px 15px -2px rgba(9, 9, 11, 0.3), 0 0 12px rgba(245, 158, 11, 0.35);
 }
 
 .pill-count {
@@ -478,9 +481,9 @@ body {
 }
 
 .prompt-card:hover {
-    border-color: var(--border-hover);
-    box-shadow: var(--shadow-hover);
-    transform: translateY(-1px);
+    border-color: rgba(245, 158, 11, 0.45);
+    box-shadow: 0 14px 35px -5px rgba(245, 158, 11, 0.18), 0 8px 22px -6px rgba(56, 189, 248, 0.15), 0 4px 14px -4px rgba(16, 185, 129, 0.12);
+    transform: translateY(-4px);
 }
 
 .card-header {
@@ -724,9 +727,9 @@ body {
 }
 
 .template-card:hover {
-    border-color: var(--border-hover);
-    box-shadow: var(--shadow-hover);
-    transform: translateY(-1px);
+    border-color: rgba(245, 158, 11, 0.45);
+    box-shadow: 0 14px 35px -5px rgba(245, 158, 11, 0.18), 0 8px 22px -6px rgba(56, 189, 248, 0.15), 0 4px 14px -4px rgba(16, 185, 129, 0.12);
+    transform: translateY(-4px);
 }
 
 .template-badge {
@@ -804,8 +807,9 @@ body {
 }
 
 .price-card:hover {
-    border-color: var(--border-hover);
-    box-shadow: var(--shadow-hover);
+    border-color: rgba(245, 158, 11, 0.5);
+    box-shadow: 0 16px 40px -5px rgba(245, 158, 11, 0.2), 0 8px 24px -6px rgba(56, 189, 248, 0.16), 0 4px 14px -4px rgba(16, 185, 129, 0.14);
+    transform: translateY(-5px);
 }
 
 .price-card.popular {
